@@ -2,9 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./Sidebar.module.scss";
 import { useRouter } from "next/router";
+
 const Sidebar = () => {
   const { pathname } = useRouter();
-  console.log(pathname);
+
   return (
     <div className={styles.sidebar}>
       <div className={styles.header}>
