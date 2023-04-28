@@ -3,7 +3,7 @@
   padding-top: 46px;
 
   width: 100%;
-  height: 100%;
+  height: calc(100% - var(--nav-height));
 
   .wrapper {
     margin: 0 auto;

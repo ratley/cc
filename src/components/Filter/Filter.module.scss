@@ -1,0 +1,135 @@
+.filter {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &.open {
+    .button {
+      border: none;
+      background-color: var(--gray-1000);
+    }
+  }
+
+  &.checked {
+    .headerLeft {
+      color: var(--primary);
+    }
+  }
+
+  .modal {
+    position: absolute;
+    top: 50px;
+    width: 320px;
+    height: 286px;
+    border-radius: 6px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+
+    .modalHeader {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 21px 25px;
+      border-bottom: 1px solid var(--gray-200);
+      border-radius: 2px;
+
+      .modalTitle {
+        font-weight: 600;
+        color: var(--gray-1000);
+      }
+
+      .headerLeft {
+        position: absolute;
+        left: 25px;
+      }
+      .headerRight {
+        position: absolute;
+        right: 20px;
+        cursor: pointer;
+      }
+    }
+
+    .content {
+      padding: 26px 10px 15px;
+
+      .options {
+        padding: 0 15px;
+
+        .label {
+          font-weight: 500;
+          font-size: 14px;
+          color: var(--gray-800);
+          margin-bottom: 27px;
+        }
+
+        .list {
+          display: flex;
+          flex-direction: column;
+          gap: 25px;
+
+          .option {
+            display: flex;
+            justify-content: space-between;
+            .optionLabel {
+              font-weight: 600;
+              color: var(--gray-1000);
+            }
+            input {
+              cursor: pointer;
+              border: 1.5px solid var(--gray-600);
+              accent-color: var(--primary);
+              width: 19px;
+              height: 19px;
+            }
+          }
+        }
+      }
+      .apply {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: var(--gray-1000);
+        border-radius: 6px;
+        text-align: center;
+        width: 300px;
+        height: 45px;
+        margin-top: 36px;
+        cursor: pointer;
+
+        span {
+          font-weight: 600;
+          color: white;
+        }
+      }
+    }
+  }
+
+  .button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    border: 1px solid var(--gray-600);
+
+    width: 59px;
+    height: 37px;
+  }
+
+  .separator {
+    height: 28px;
+    width: 1px;
+    border: 1px solid var(--gray-400);
+    margin: 0 15px;
+  }
+
+  .clear {
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--gray-400);
+
+    &.filtersApplied {
+      color: var(--primary);
+    }
+  }
+}
