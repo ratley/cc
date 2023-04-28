@@ -6,7 +6,7 @@ const classnames = {
   "Close Friends": styles.cf,
   "Super Close Friends": styles.scf,
 };
-// trunk-ignore(eslint/react/display-name)
+
 const FriendCard = forwardRef(({ friend }: { friend: Friend }, ref) => {
   const statusClassName = friend.status ? classnames[friend.status] : "";
   return (
@@ -35,4 +35,5 @@ const FriendCard = forwardRef(({ friend }: { friend: Friend }, ref) => {
     </div>
   );
 });
+FriendCard.displayName = "FriendCard";
 export default FriendCard;
