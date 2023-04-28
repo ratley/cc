@@ -17,10 +17,18 @@ interface Props {
 export default function Filter({ options, label, onApply, onClear }: Props) {
   const [open, setOpen] = useState(false);
   const [filtersApplied, setFiltersApplied] = useState(false);
-  const [checkedOptions, setCheckedOptions] = useState([]);
+  const [checkedOptions, setCheckedOptions] = useState(
+    options.filter((option) => option.applied).map((option) => option.label)
+  );
 
-  const toggleOpen = () => {
-    if (open) {
+  useEffect(() => {
+    setCheckedOptions(
+      options.filter((option) => option.applied).map((option) => option.label)
+    );
+  }, [open, options]);
+
+  const toggleOpen = (clear) => {
+    if (open && clear) {
       setCheckedOptions([]);
     }
     setOpen(!open);
@@ -32,29 +40,22 @@ export default function Filter({ options, label, onApply, onClear }: Props) {
     } else {
       setCheckedOptions(checkedOptions.filter((item) => item !== value));
     }
-  };
-
-  const clearChecked = () => {
-    setCheckedOptions([]);
-    onClear();
+    // console.log(checkedOptions);
   };
 
   const handleApply = () => {
     setFiltersApplied(!!checkedOptions.length);
+
     onApply(checkedOptions);
 
-    toggleOpen();
+    toggleOpen(!checkedOptions.length);
   };
 
   return (
     <div
       className={`${styles.filter} ${
         open || filtersApplied ? styles.open : ""
-      } ${
-        options.some((opt) => opt.applied) || checkedOptions.length
-          ? styles.checked
-          : ""
-      }`}
+      } ${checkedOptions.length ? styles.checked : ""}`}
     >
       <div className={styles.button} onClick={toggleOpen}>
         <Image
@@ -85,7 +86,7 @@ export default function Filter({ options, label, onApply, onClear }: Props) {
         <div className={styles.modal}>
           <div className={styles.modalHeader}>
             <span
-              onClick={clearChecked}
+              onClick={() => setCheckedOptions([])}
               className={`${styles.clear} ${styles.headerLeft} }`}
             >
               Clear all
@@ -116,9 +117,7 @@ export default function Filter({ options, label, onApply, onClear }: Props) {
                     <input
                       type="checkbox"
                       id={option.label}
-                      checked={
-                        checkedOptions.includes(option.label) || option.applied
-                      }
+                      checked={checkedOptions.includes(option.label)}
                       onChange={() => handleCheck(option.label)}
                     />
                   </div>
