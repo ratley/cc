@@ -1,5 +1,6 @@
 import Head from "next/head";
-import { Nav } from "../components";
+
+import styles from "../styles/Home.module.scss";
 
 export default function Home() {
   return (
@@ -7,8 +8,8 @@ export default function Home() {
       <Head>
         <title>Home</title>
       </Head>
-      <div>
-        <Nav title="Home" />
+      <div className={styles.home}>
+        <span>Welcome to the Clerkie Challenge!</span>
       </div>
     </>
   );

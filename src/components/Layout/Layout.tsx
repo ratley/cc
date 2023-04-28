@@ -3,10 +3,19 @@ import Sidebar from "../Sidebar/Sidebar";
 import { Inter } from "next/font/google";
 import styles from "./Layout.module.scss";
 import Head from "next/head";
+import Nav from "../Nav/Nav";
+import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const pageNames = {
+  "/": "Home",
+  "/friends": "Friends",
+};
+
 export default function Layout({ children }) {
+  const { pathname } = useRouter();
+
   return (
     <>
       <Head>
@@ -17,7 +26,10 @@ export default function Layout({ children }) {
       </Head>
       <div className={`${styles.layout} ${inter.className}`}>
         <Sidebar />
-        <main>{children}</main>
+        <main>
+          <Nav title={pageNames[pathname]} />
+          {children}
+        </main>
       </div>
     </>
   );

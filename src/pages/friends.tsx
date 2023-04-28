@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { Nav } from "../components";
 
 export default function Friends() {
   return (
@@ -7,9 +6,7 @@ export default function Friends() {
       <Head>
         <title>Friends</title>
       </Head>
-      <div>
-        <Nav title="Friends" />
-      </div>
+      <div></div>
     </>
   );
 }
