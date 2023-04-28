@@ -15,16 +15,16 @@ interface Props {
 }
 
 export default function Filter({ options, label, onApply, onClear }: Props) {
+  const appliedOptions = options
+    .filter((option) => option.applied)
+    .map((option) => option.label);
+
   const [open, setOpen] = useState(false);
   const [filtersApplied, setFiltersApplied] = useState(false);
-  const [checkedOptions, setCheckedOptions] = useState(
-    options.filter((option) => option.applied).map((option) => option.label)
-  );
+  const [checkedOptions, setCheckedOptions] = useState(appliedOptions);
 
   useEffect(() => {
-    setCheckedOptions(
-      options.filter((option) => option.applied).map((option) => option.label)
-    );
+    setCheckedOptions(appliedOptions);
   }, [open, options]);
 
   const toggleOpen = (clear) => {
@@ -40,14 +40,11 @@ export default function Filter({ options, label, onApply, onClear }: Props) {
     } else {
       setCheckedOptions(checkedOptions.filter((item) => item !== value));
     }
-    // console.log(checkedOptions);
   };
 
   const handleApply = () => {
     setFiltersApplied(!!checkedOptions.length);
-
     onApply(checkedOptions);
-
     toggleOpen(!checkedOptions.length);
   };
 
@@ -68,6 +65,9 @@ export default function Filter({ options, label, onApply, onClear }: Props) {
           width={20}
           height={20}
         />
+        {appliedOptions.length > 0 && (
+          <span className={styles.appliedCount}>{appliedOptions.length}</span>
+        )}
       </div>
       <div className={styles.separator} />
       <span
