@@ -1,0 +1,16 @@
+.nav {
+  display: flex;
+  align-items: center;
+
+  box-shadow: 0 4px 4px rgba(161, 161, 161, 0.1);
+
+  width: 100%;
+  height: 80px;
+  padding-left: 40px;
+
+  .title {
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+  }
+}
